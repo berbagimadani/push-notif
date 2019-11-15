@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Push Codelab</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script> 
+</head>
+
+<body>
+ 
+
+  <main> 
+      <button onclick="subscribe">
+        Enable Push Messaging
+      </button>
+    </p> 
+  </main>
+
+  <script>
+
+    addEventListener('load', async () => {
+      let sw = await navigator.serviceWorker.register('./sw');
+      console.log(sw)
+    });
+
+    async function subscribe(){
+      let sw = await navigator.serviceWorker.ready;
+      let push = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: 'BMNTjCmMklN7gvYefnKND0hz3yKGAJP88tGaEkxwb9C8cKzm5PyV21UJFGfh9EZYBJGuAUvUc4LzEkEGo4ahYQI'
+      })
+
+      console.log(JSON.stringify(push));
+
+    }
+
+  </script>
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>
